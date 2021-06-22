@@ -6,11 +6,21 @@ int main() {
     int counter = 0;
 
     wiringPiSetup();
-    pinMode(29, OUTPUT);
-
+    pinMode(29, OUTPUT); // Green LED
+    pinMode(28, OUTPUT); // Red LED
+    
     while(counter < 10) {
-        digitalWrite(29, !digitalRead(29));
-        counter++;
+	switch(counter % 2){
+		case 1:
+			printf("Turnin on red\n");
+			digitalWrite(28, !digitalRead(28));
+			break;
+		default:
+			printf("Turning on green\n");
+			digitalWrite(29, !digitalRead(29));
+			break;
+	}
+	counter++;
         sleep(1);
     }
 
